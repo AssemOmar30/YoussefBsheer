@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youssef Bsheer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0F0F0F;
+  --surface:   #161616;
+  --surface2:  #1E1E1E;
+  --border:    rgba(255,255,255,0.07);
+  --text:      #EDEBE7;
+  --text-dim:  rgba(237,235,231,0.45);
+  --text-mid:  rgba(237,235,231,0.7);
+  --red:       #E5432A;
+  --red-glow:  rgba(229,67,42,0.12);
+  --gold:      #C9974A;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ────────────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  padding: 0 48px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(15,15,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 18px;
+  color: var(--text); text-decoration: none; letter-spacing: -0.3px;
+}
+.nav-logo span { color: var(--red); }
+.nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
+.nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--text-dim); text-decoration:none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-kick {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--red); color: #fff !important;
+  padding: 9px 20px; font-size: 13px !important;
+  font-weight: 500 !important; text-decoration: none;
+  border-radius: 2px; transition: opacity .2s;
+}
+.nav-kick:hover { opacity: .85; }
+.nav-kick-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── HERO ────────────────────── */
+.hero {
+  min-height: 100vh;
+  padding: 120px 48px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.hero-meta {
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: 72px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--text-dim);
+}
+.hero-meta-line { width: 48px; height: 1px; background: var(--border); }
+.hero-meta-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--red-glow);
+  border: 1px solid rgba(229,67,42,0.2);
+  padding: 7px 14px; border-radius: 2px;
+  color: var(--red); font-size: 11px; letter-spacing: 2px;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); animation: pulse 2s infinite;
+}
+
+.hero-content { align-self: center; }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 6.5vw, 96px);
+  line-height: 1.02; letter-spacing: -2.5px;
+  margin-bottom: 32px;
+}
+.hero-title .line-accent { color: var(--red); }
+.hero-title .line-dim { color: var(--text-mid); font-weight: 400; }
+
+.hero-sub {
+  font-size: 17px; line-height: 1.8;
+  color: var(--text-dim); max-width: 520px;
+  margin-bottom: 52px; font-weight: 400;
+}
+
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.3px;
+  text-decoration: none; border-radius: 2px;
+  padding: 13px 26px; transition: all .25s;
+}
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: #d13d24; }
+.btn-outline {
+  background: transparent; color: var(--text-mid);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 64px; border-top: 1px solid var(--border);
+  margin-top: 80px;
+}
+.hero-stat { }
+.hero-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 32px;
+  letter-spacing: -1px; color: var(--text);
+}
+.hero-stat-label {
+  font-size: 12px; color: var(--text-dim);
+  letter-spacing: 1px; margin-top: 4px;
+}
+.hero-scroll {
+  font-size: 12px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Syne', sans-serif; font-weight: 500;
+}
+.scroll-line {
+  width: 40px; height: 1px; background: var(--border);
+  position: relative; overflow: hidden;
+}
+.scroll-line::after {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--red);
+  animation: scan 2s ease-in-out infinite;
+}
+@keyframes scan { 0%{left:-100%} 100%{left:100%} }
+
+/* ── SECTION BASE ────────────── */
+.section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.full-section { padding: 100px 48px; }
+
+.section-label {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 52px;
+}
+.section-label::before {
+  content: ''; width: 20px; height: 1px; background: var(--red);
+}
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 48px; }
+
+/* ── ABOUT ───────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 5fr 4fr;
+  gap: 80px; align-items: start;
+}
+.about-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.1; letter-spacing: -1.5px;
+  margin-bottom: 32px;
+}
+.about-heading span { color: var(--red); }
+.about-text {
+  font-size: 15px; line-height: 1.9;
+  color: var(--text-dim); margin-bottom: 18px;
+}
+
+.about-right { padding-top: 4px; }
+
+.quote-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-right: 2px solid var(--red);
+  padding: 36px; margin-bottom: 28px;
+}
+.quote-block blockquote {
+  font-family: 'Cairo', sans-serif;
+  font-size: 18px; font-weight: 400;
+  line-height: 1.7; color: var(--text-mid);
+  margin-bottom: 18px;
+}
+.quote-block cite {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--red); font-style: normal;
+}
+
+.tags { display:flex; flex-wrap:wrap; gap:8px; }
+.tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 2px;
+  font-size: 12px; color: var(--text-dim); font-weight: 400;
+  font-family: 'Syne', sans-serif; letter-spacing: 0.3px;
+}
+
+/* ── SHARK ───────────────────── */
+.shark-wrap { background: var(--surface); }
+
+.shark-inner {
+  padding: 100px 48px; max-width: 1200px; margin: 0 auto;
+}
+
+.shark-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: end; margin-bottom: 64px;
+}
+.shark-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 1.05; letter-spacing: -2px;
+}
+.shark-heading span { color: var(--red); }
+.shark-desc {
+  font-size: 15px; line-height: 1.8; color: var(--text-dim);
+}
+
+.opinions-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+}
+.op-card {
+  background: var(--surface); padding: 44px 36px;
+  transition: background .3s;
+  position: relative; overflow: hidden;
+}
+.op-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .4s ease;
+}
+.op-card:hover { background: var(--surface2); }
+.op-card:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.op-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; color: var(--text-dim);
+  margin-bottom: 28px;
+}
+.op-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 20px;
+  letter-spacing: -0.5px; margin-bottom: 14px;
+  color: var(--text);
+}
+.op-text {
+  font-size: 14px; line-height: 1.8; color: var(--text-dim);
+}
+.op-verdict {
+  margin-top: 28px; padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; color: var(--gold);
+}
+
+/* ── SCHEDULE ────────────────── */
+.schedule-wrap { background: var(--bg); }
+
+.schedule-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+
+.schedule-left {}
+.schedule-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 1.1; letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+.schedule-heading span { color: var(--red); }
+.schedule-note {
+  font-size: 15px; line-height: 1.8; color: var(--text-dim); margin-bottom: 36px;
+}
+
+.days {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.day-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-right: 2px solid transparent;
+  transition: border-color .25s, background .25s;
+}
+.day-item:hover {
+  background: var(--surface2);
+  border-right-color: var(--red);
+}
+.day-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--text);
+}
+.day-time {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--red); letter-spacing: 1px;
+}
+.day-platform {
+  font-size: 11px; color: var(--text-dim); letter-spacing: 1px;
+}
+
+/* ── PLATFORMS ───────────────── */
+.platforms-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  margin-top: 52px;
+}
+.plat-card {
+  background: var(--surface);
+  padding: 36px 28px 52px;
+  text-decoration: none; color: var(--text);
+  display: block; position: relative;
+  transition: background .25s;
+  border-top: 1px solid transparent;
+}
+.plat-card:hover {
+  background: var(--surface2);
+  border-top-color: var(--red);
+}
+.plat-icon {
+  width: 40px; height: 40px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; margin-bottom: 20px; border-radius: 2px;
+}
+.plat-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 18px;
+  letter-spacing: -0.3px; margin-bottom: 4px;
+}
+.plat-handle {
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.5px; margin-bottom: 14px;
+  font-family: 'Syne', sans-serif;
+}
+.plat-desc {
+  font-size: 13px; line-height: 1.7; color: var(--text-dim);
+}
+.plat-arrow {
+  position: absolute; bottom: 24px; right: 24px;
+  font-size: 16px; color: var(--border);
+  transition: color .2s, transform .2s;
+  font-family: 'Syne', sans-serif;
+}
+.plat-card:hover .plat-arrow { color: var(--red); transform: translate(3px,-3px); }
+
+/* ── FOOTER ──────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 44px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 18px; color: var(--text);
+}
+.footer-logo span { color: var(--red); }
+.footer-copy {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; color: var(--text-dim); letter-spacing: 1.5px;
+}
+.footer-socials { display:flex; gap:24px; }
+.footer-socials a {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  color: var(--text-dim); text-decoration: none;
+  transition: color .2s;
+}
+.footer-socials a:hover { color: var(--red); }
+
+/* ── ANIMATIONS ──────────────── */
+.fade {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade.in { opacity:1; transform:translateY(0); }
+
+/* ── RESPONSIVE ──────────────── */
+@media(max-width:900px){
+  nav { padding: 0 24px; }
+  .nav-links { display:none; }
+  .hero, .section { padding: 100px 24px 60px; }
+  .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
+  .full-section { padding: 72px 24px; }
+  .shark-inner { padding: 72px 24px; }
+  .about-grid, .shark-intro, .schedule-grid { grid-template-columns: 1fr; gap:40px; }
+  .opinions-grid, .platforms-grid { grid-template-columns: 1fr; }
+  .divider { margin: 0 24px; }
+  footer { flex-direction: column; gap:20px; padding: 36px 24px; text-align:center; }
+  .footer-socials { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">YB<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">عني</a></li>
+    <li><a href="#shark">Shark Tank</a></li>
+    <li><a href="#schedule">البث</a></li>
+    <li><a href="#platforms">تابعني</a></li>
+    <li>
+      <a href="https://kick.com/youssefbsheer" target="_blank" class="nav-kick">
+        <span class="nav-kick-dot"></span> Kick
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-meta fade">
+    <div class="hero-meta-line"></div>
+    <span>Youssef Bsheer — محتوى حقيقي</span>
+    <div class="hero-meta-badge">
+      <div class="badge-dot"></div>
+      الأربع · الخميس · الجمعة — 9 PM
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-title fade">
+      رأي صريح<br>
+      <span class="line-accent">في كل deal.</span>
+    </h1>
+    <p class="hero-sub fade">
+      يوسف بشير بيحلل Shark Tank Egypt بعقلية تاجر حقيقي. مش reaction عادي — تحليل في الأرقام، الـ pitch، والقرارات. وبيقول رأيه من غير ما يجامل حد.
+    </p>
+    <div class="hero-actions fade">
+      <a href="https://kick.com/youssefbsheer" target="_blank" class="btn btn-red">شاهد على Kick →</a>
+      <a href="https://discord.gg/GkZMsKRHTq" target="_blank" class="btn btn-outline">Discord الكوميونيتي</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom fade">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3×</div>
+      <div class="hero-stat-label">أيام في الأسبوع</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">9PM</div>
+      <div class="hero-stat-label">ثابت كل مرة</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-label">رأي صريح</div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">عني</div>
+  <div class="about-grid">
+    <div class="fade">
+      <h2 class="about-heading">مش مجرد<br>تعليق — <span>تحليل.</span></h2>
+      <p class="about-text">أنا يوسف، بتابع Shark Tank Egypt بشغف حقيقي. كل حلقة بشوفها بعين اللي بيفهم في البيزنس — من الـ valuation للـ pitch، للتفاصيل اللي ممكن تعدي عليك وأنت مش واخد بالك.</p>
+      <p class="about-text">المحتوى بتاعي مش entertainment بس. هو رأي مبني على تفكير، بقدمه بصراحة تامة من غير ما أحاول أعجب حد أو أمشي مع التيار.</p>
+    </div>
+    <div class="fade" style="transition-delay:.12s">
+      <div class="quote-block">
+        <blockquote>"الفكرة الكويسة لوحدها مش كفاية — اللي بيبيع نفسه صح هو اللي بياخد الـ deal."</blockquote>
+        <cite>— يوسف بشير</cite>
+      </div>
+      <div class="tags">
+        <span class="tag">Shark Tank EGY</span>
+        <span class="tag">Business</span>
+        <span class="tag">Tech</span>
+        <span class="tag">Live Reactions</span>
+        <span class="tag">Kick</span>
+        <span class="tag">Real Talk</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SHARK TANK -->
+<div class="shark-wrap" id="shark">
+  <div class="shark-inner">
+    <div class="section-label" style="color:var(--text-dim)">Shark Tank</div>
+    <div class="shark-intro">
+      <h2 class="shark-heading fade">بعيني<br><span>أنا.</span></h2>
+      <p class="shark-desc fade" style="transition-delay:.1s">مش بتابع الحلقة وبسيبها. بحللها، بشوف الأرقام، وبعطي رأيي الصريح في كل pitch — حتى لو الـ sharks اختلفوا مع بعض.</p>
+    </div>
+    <div class="opinions-grid">
+      <div class="op-card fade">
+        <div class="op-num">01 —</div>
+        <div class="op-title">الـ Pitch أهم من الفكرة</div>
+        <p class="op-text">شفت أفكار ممتازة راحت بسبب صاحبها ماعرفش يبيعها. والعكس كمان — pitch قوي بيفتح أبواب لفكرة عادية. لازم الاثنين يتعملوا صح.</p>
+        <div class="op-verdict">الاثنين لازم يكونوا قوة</div>
+      </div>
+      <div class="op-card fade" style="transition-delay:.1s">
+        <div class="op-num">02 —</div>
+        <div class="op-title">الـ Valuation رقم بيتشرح</div>
+        <p class="op-text">لما حد بييجي بـ valuation مش منطقية من غير ما يقدر يشرحها، ده مش ثقة بالنفس — ده جهل بالسوق. الأرقام بتتكلم لوحدها.</p>
+        <div class="op-verdict">افهم السوق الأول</div>
+      </div>
+      <div class="op-card fade" style="transition-delay:.2s">
+        <div class="op-num">03 —</div>
+        <div class="op-title">الـ Sharks بيغلطوا</div>
+        <p class="op-text">مش هدفي أوافق على قرارات الـ sharks عشان هما أكبر مني. لو القرار غلط، بقول إنه غلط ولماذا. التحليل فوق الأسماء.</p>
+        <div class="op-verdict">الحقيقة فوق الكل</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div class="schedule-wrap" id="schedule">
+  <div class="section" style="padding-top:100px; padding-bottom:100px;">
+    <div class="section-label">مواعيد البث</div>
+    <div class="schedule-grid">
+      <div class="fade">
+        <h2 class="schedule-heading">مش كل يوم —<br>بس لما بييجي<br><span>بيستاهل.</span></h2>
+        <p class="schedule-note">البث ثابت ثلات أيام في الأسبوع على Kick. الوقت محدد عشان تتجهز وتيجي متحمس.</p>
+        <a href="https://kick.com/youssefbsheer" target="_blank" class="btn btn-red">اشترك على Kick →</a>
+      </div>
+      <div class="fade" style="transition-delay:.12s">
+        <div class="days">
+          <div class="day-item">
+            <span class="day-name">الأربعاء</span>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="day-platform">Kick</span>
+              <span class="day-time">9:00 PM</span>
+            </div>
+          </div>
+          <div class="day-item">
+            <span class="day-name">الخميس</span>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="day-platform">Kick</span>
+              <span class="day-time">9:00 PM</span>
+            </div>
+          </div>
+          <div class="day-item">
+            <span class="day-name">الجمعة</span>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="day-platform">Kick</span>
+              <span class="day-time">9:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PLATFORMS -->
+<section class="section" id="platforms">
+  <div class="section-label">تابعني</div>
+  <h2 class="about-heading fade" style="font-size:clamp(32px,3.5vw,48px); margin-bottom:0;">في كل مكان.</h2>
+  <div class="platforms-grid">
+    <a href="https://kick.com/youssefbsheer" target="_blank" class="plat-card fade">
+      <div class="plat-icon">🎮</div>
+      <div class="plat-name">Kick</div>
+      <div class="plat-handle">youssefbsheer</div>
+      <p class="plat-desc">البث الأساسي. Live reactions ع Shark Tank وحوارات real talk حقيقية.</p>
+      <div class="plat-arrow">↗</div>
+    </a>
+    <a href="https://discord.gg/GkZMsKRHTq" target="_blank" class="plat-card fade" style="transition-delay:.08s">
+      <div class="plat-icon">💬</div>
+      <div class="plat-name">Discord</div>
+      <div class="plat-handle">Server يوسف</div>
+      <p class="plat-desc">الكوميونيتي — بيزنس، Tech، Shark Tank، وأي حاجة تانية. بلا فلتر.</p>
+      <div class="plat-arrow">↗</div>
+    </a>
+    <a href="https://www.instagram.com/youssefbsheeer/" target="_blank" class="plat-card fade" style="transition-delay:.16s">
+      <div class="plat-icon">📷</div>
+      <div class="plat-name">Instagram</div>
+      <div class="plat-handle">@youssefbsheeer</div>
+      <p class="plat-desc">اللحظات، الآراء السريعة، والـ behind the scenes من المحتوى.</p>
+      <div class="plat-arrow">↗</div>
+    </a>
+    <a href="https://www.tiktok.com/@youssefbsh" target="_blank" class="plat-card fade" style="transition-delay:.24s">
+      <div class="plat-icon">🎵</div>
+      <div class="plat-name">TikTok</div>
+      <div class="plat-handle">@youssefbsh</div>
+      <p class="plat-desc">أقوى لحظات الـ reactions مضغوطة في ثواني. مش هتندم.</p>
+      <div class="plat-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">YB<span>.</span></div>
+  <div class="footer-copy">© 2025 — YOUSSEF BSHEER</div>
+  <div class="footer-socials">
+    <a href="https://kick.com/youssefbsheer" target="_blank">KICK</a>
+    <a href="https://discord.gg/GkZMsKRHTq" target="_blank">DISCORD</a>
+    <a href="https://www.instagram.com/youssefbsheeer/" target="_blank">INSTAGRAM</a>
+    <a href="https://www.tiktok.com/@youssefbsh" target="_blank">TIKTOK</a>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.fade');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
